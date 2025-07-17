@@ -1,7 +1,7 @@
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
-import {isValidObjectId} from "mongoose";
+import { isValidObjectId } from "mongoose";
 import { Student } from "../models/student.models.js";
 
 
@@ -114,11 +114,11 @@ const login = asyncHandler(async (req, res) => {
 })
 
 const updateDetails = asyncHandler(async (req, res) => {
-    const {fullname, email} = req.body
+    const { fullname, email } = req.body
 
     const studentId = req.student?._id
 
-    if(!isValidObjectId(studentId)) {
+    if (!isValidObjectId(studentId)) {
         throw new ApiError(400, "Enter valid Id")
     }
 
@@ -130,7 +130,7 @@ const updateDetails = asyncHandler(async (req, res) => {
                 email
             }
         },
-        {new: true}
+        { new: true }
     )
 
     return res.status(200).json(new ApiResponse(
@@ -144,7 +144,7 @@ const updateDetails = asyncHandler(async (req, res) => {
 const toggleFees = asyncHandler(async (req, res) => {
     const studentId = req.student?._id
 
-    if(!isValidObjectId(studentId)) {
+    if (!isValidObjectId(studentId)) {
         throw new ApiError(400, "Enter valid student id")
     }
 
@@ -155,7 +155,7 @@ const toggleFees = asyncHandler(async (req, res) => {
                 fees_status: true
             }
         },
-        {new: true}
+        { new: true }
     )
 
     res.status(200).json(new ApiResponse(
@@ -208,9 +208,11 @@ const logout = asyncHandler(async (req, res) => {
 
 const currentStudent = asyncHandler(async (req, res) => {
 
+    const { fullname, email, feesPaid } = req.student;
+
     return res.status(200).json(new ApiResponse(
         200,
-        req.student._id,
+        { fullname, email, feesPaid },
         "Current user fetched succesfully"
     ))
 })
