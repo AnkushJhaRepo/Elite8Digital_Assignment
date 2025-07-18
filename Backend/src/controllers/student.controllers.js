@@ -208,11 +208,11 @@ const logout = asyncHandler(async (req, res) => {
 
 const currentStudent = asyncHandler(async (req, res) => {
 
-    const { fullname, email, feesPaid } = req.student;
+    const { fullname, email, fees_status } = req.student;
 
     return res.status(200).json(new ApiResponse(
         200,
-        { fullname, email, feesPaid },
+        { fullname, email, fees_status },
         "Current user fetched succesfully"
     ))
 })
