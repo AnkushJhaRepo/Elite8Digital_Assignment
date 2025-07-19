@@ -1,4 +1,4 @@
-Live - https://elite8-digital-assignment-xz27.vercel.app/all-students
+Live - https://elite8-digital-assignment-xz27.vercel.app
 
 # 🎓 Student Fee Management System
 
